@@ -25,7 +25,10 @@
 263 Barkly st
 Footscray, 3011, Melbourne, Victoria
 
-Phone: (555) 555-5555</textarea>
+Phone: 0426 874 908
+A.B.N 163 382 778
+
+			</textarea>
 
             <div id="logo">
 
@@ -65,7 +68,7 @@ c/o Steve Widget</textarea>
                 </tr>
                 <tr>
                     <td class="meta-head">Amount Due</td>
-                    <td><div class="due">$875.00</div></td>
+                    <td><div class="due">$1000.00</div></td>
                 </tr>
 
             </table>
@@ -79,52 +82,66 @@ c/o Steve Widget</textarea>
 		      <th>Description</th>
 		      <th>Unit Cost</th>
 		      <th>Quantity</th>
-		      <th>Price</th>
+		      <th>Discount</th>
+			   <th>Price</th>
+			    <th>Tax</th>
 		  </tr>
 		  
 		  <tr class="item-row">
                 <td class="item-name"><div class="delete-wpr"><textarea>Item Name</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td>
 		      <td class="description"><textarea>description</textarea></td>
-		      <td><textarea class="cost">$1.00</textarea></td>
+		      <td><textarea class="cost">$1000.00</textarea></td>
 		      <td><textarea class="qty">1</textarea></td>
-		      <td><span class="price">$1.00</span></td>
+			  <td><textarea class="discount">0%</textarea></td>
+		      <td><span class="price">$1000.00</span></td>
+			  <td><textarea class="tax">GST 10%</textarea></td>
 		  </tr>
 		  
 		  		  
 		  <tr id="hiderow">
-		    <td colspan="5"><a id="addrow" href="javascript:;" title="Add a row">Add a row</a></td>
+		    <td colspan="7"><a id="addrow" href="javascript:;" title="Add a row">Add a row</a></td>
 		  </tr>
 		  
 		  <tr>
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line">Subtotal</td>
-		      <td class="total-value"><div id="subtotal">$1.00</div></td>
+		      <td colspan="3" class="blank"> </td>
+		      <td colspan="3" class="total-line">Subtotal:</td>
+		      <td class="total-value"><div id="subtotal">$1000.00</div></td>
 		  </tr>
 		  <tr>
 
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line">Total</td>
-		      <td class="total-value"><div id="total">$1.00</div></td>
+		      <td colspan="3" class="blank"> </td>
+		      <td colspan="3" class="total-line">Total:</td>
+		      <td class="total-value"><div id="total">$1000.00</div></td>
 		  </tr>
 		  <tr>
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line">Amount Paid</td>
+		      <td colspan="3" class="blank"> </td>
+		      <td colspan="3" class="total-line">Tax:</td>
 
-		      <td class="total-value"><textarea id="paid">$0.00</textarea></td>
+		      <td class="total-value"><textarea id="paidTax">$100.00</textarea></td>
 		  </tr>
 		  <tr>
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line balance">Balance Due</td>
-		      <td class="total-value balance"><div class="due">$1.00</div></td>
+		      <td colspan="3" class="blank"> </td>
+		      <td colspan="3" class="total-line totalAmount">Total Amount:</td>
+		      <td class="total-value balance"><div class="amount">$1100.00</div></td>
 		  </tr>
-		
+		 <tr>
+		      <td colspan="3" class="blank"> </td>
+		      <td colspan="3" class="total-line balance">Balance Due:</td>
+		      <td class="total-value balance"><div class="due">$1100.00</div></td>
+		  </tr>
 		</table>
 		
-		<div id="terms">
-		  <h5>Terms</h5>
-		  <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
+		<br/>
+		<div id="account">
+		  <h5>Account SumSigns</h5>
+
+            <textarea id="account">
+Name: Sumsings
+BSB: 063 132
+ACC: 1105 2684
+			</textarea>
 		</div>
-	
+	<br/>
 		<div id="functions">
 		    <input type="button" name="send" id="sendmail" value="Send Email" />
 		  </div>

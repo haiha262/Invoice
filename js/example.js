@@ -71,25 +71,45 @@ function update_total() {
 
   $('#subtotal').html("$"+total);
   $('#total').html("$"+total);
-  
+  update_paidTax();
   update_balance();
 }
-
+function update_paidTax() {
+    var total = $("#total").html().replace("$","");
+     var row = $(this).parents('.item-row');
+     var typeTax = row.find(".tax").val();
+    var tax = 10;
+    if (typeTax == "GST") { //will put into database
+        tax = 10;
+    }
+    var paidTax = percentage(total,tax);
+    $('#paidTax').html("$"+paidTax);
+}
 function update_balance() {
-  var due = $("#total").html().replace("$","") - $("#paid").val().replace("$","");
+  var total =parseFloat($("#total").html().replace("$",""),2);
+  var paidTax =  parseFloat($("#paidTax").val().replace("$",""),2);
+  
+  var due = total + paidTax;
   due = roundNumber(due,2);
   
-  $('.due').html("$"+due);
+  $('.amount').html("$"+due);
+   $('.due').html("$"+due);
 }
 
 function update_price() {
   var row = $(this).parents('.item-row');
-  var price = row.find('.cost').val().replace("$","") * row.find('.qty').val();
+  var cost = row.find('.cost').val().replace("$","");
+  var priceDiscount = percentage(cost ,row.find('.discount').val().replace("%",""))
+  var qty = row.find('.qty').val();
+  var price = cost * qty -  priceDiscount * qty;
   price = roundNumber(price,2);
   isNaN(price) ? row.find('.price').html("N/A") : row.find('.price').html("$"+price);
   
   update_total();
 }
+function percentage(a, b) {
+        return Math.round((a / 100) * b);
+    }
 
 function bind() {
   $(".cost").blur(update_price);
@@ -105,7 +125,17 @@ $(document).ready(function() {
   $("#paid").blur(update_balance);
    
   $("#addrow").click(function(){
-    $(".item-row:last").after('<tr class="item-row"><td class="item-name"><div class="delete-wpr"><textarea>Item Name</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td><td class="description"><textarea>Description</textarea></td><td><textarea class="cost">$0</textarea></td><td><textarea class="qty">0</textarea></td><td><span class="price">$0</span></td></tr>');
+      var str = '<tr class="item-row">';
+    str += '<td class="item-name"><div class="delete-wpr"><textarea>Item A Name</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td>';
+    str += '<td class="description"><textarea>Description</textarea></td>';
+    str += '<td><textarea class="cost">$0</textarea></td>';
+    str += '<td><textarea class="qty">0</textarea></td>';
+    str += '<td><textarea class="discount">0%</textarea></td>';
+    str += '<td><span class="price">$0</span></td>';
+    str += '<td><textarea class="tax">GST</textarea></td>';
+    str += '</tr>';
+   
+    $(".item-row:last").after(str);
     if ($(".delete").length > 0) $(".delete").show();
     bind();
   });
