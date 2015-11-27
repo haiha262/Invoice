@@ -165,5 +165,28 @@ $(document).ready(function() {
   });
   
   $("#date").val(print_today());
-  
+  $("#sendmail").click(function(){
+    getData();
+    $.ajax({url:"sendmail.php",success:function(result){
+      alear ("DONE");
+      }});
+
+
+  });
+  function getData() {
+    data =[];
+    data["invoiceNo"] = $("#invoiceNo").val();
+    data["date"] = $("#date").val();
+    data["amount"] = $("#amount").val();
+    data["subtotal"] = $("#subtotal").val();
+    data["total"] = $("#total").val();
+    data["paidTax"] = $("#paidTax").val();
+    data["due"] = $("#due").val();
+    //get each row
+     var name_data = [];
+    $('.item-name').each(function(i){
+       name[i] = $(this).html().replace("$","");
+  });
+    //code
+  }
 });

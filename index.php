@@ -59,7 +59,7 @@ c/o Steve Widget</textarea>
             <table id="meta">
                 <tr>
                     <td class="meta-head">Invoice #</td>
-                    <td><textarea>000123</textarea></td>
+                    <td><textarea id="invoiceNo">000123</textarea></td>
                 </tr>
                 <tr>
 
@@ -143,7 +143,7 @@ ACC: 1105 2684
 		</div>
 	<br/>
 		<div id="functions">
-		    <input type="button" name="send" id="sendmail" value="Send Email" />
+		    <input type="button" name="send" id="sendmail" value="Send Email"  />
 		  </div>
 	</div>
 	
