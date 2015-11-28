@@ -105,7 +105,16 @@ $(document).ready(function() {
   $("#paid").blur(update_balance);
    
   $("#addrow").click(function(){
-    $(".item-row:last").after('<tr class="item-row"><td class="item-name"><div class="delete-wpr"><textarea>Item Name</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td><td class="description"><textarea>Description</textarea></td><td><textarea class="cost">$0</textarea></td><td><textarea class="qty">0</textarea></td><td><span class="price">$0</span></td></tr>');
+	var row = '<tr class="item-row">';
+        row += '<td class="item-name"><div class="delete-wpr"><textarea>Item Name</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td>';
+		row += '<td class="description"><textarea>description</textarea></td>';
+		row += '<td><textarea class="cost">$100.00</textarea></td>';
+		row += '<td><textarea class="qty">1</textarea></td>';
+		row += '<td><textarea class="discount">0%</textarea></td>';
+		row += '<td><span class="price">$100.00</span></td>';
+		row += '<td><textarea class="tax">GST 10%</textarea></td>';
+		row += '</tr>';
+    $(".item-row:last").after(row);
     if ($(".delete").length > 0) $(".delete").show();
     bind();
   });
@@ -135,5 +144,39 @@ $(document).ready(function() {
   });
   
   $("#date").val(print_today());
-  
+  $("#sendmail").click(function(e) 
+  {
+	  var data = [];
+	 var aRow = {}; // my object
+	 var arrayList =  []; // my array
+
+
+     $(".item-row").each(function(i){
+		   var name= $(this).find('.item-name textarea').val();
+		var description= $(this).find('.description textarea').val();
+		 var cost= $(this).find('.cost').val();
+		 var qty= $(this).find('.qty').val();
+		 var price= $(this).find('.price').text();
+
+//		 var qty= document.getElementsByClassName('qty')[i].value;
+		aRow = {
+			_item_name : name,
+			_description : description,
+			_cost: cost,
+			_qty: qty,
+			_price: price
+			};
+			arrayList.push(aRow);
+			alert(name + " " + description);
+	});
+	
+	data.push(arrayList);
+	
+	for (var i =0; i<arrayList.length ; i++)
+	{
+		aRow = arrayList[i];
+		
+		console.log('row :' + aRow['_item_name'] + " "+ aRow['_description'] + " "+ aRow['_cost'] + " "+ aRow['_qty'] + " "+ aRow['_price'] + " ");
+		}
+  });
 });

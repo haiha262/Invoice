@@ -25,7 +25,8 @@
 263 Barkly st
 Footscray, 3011, Melbourne, Victoria
 
-Phone: (555) 555-5555</textarea>
+Phone: 0426 874 908
+A.B.N 163 382 778</textarea>
 
             <div id="logo">
 
@@ -56,7 +57,7 @@ c/o Steve Widget</textarea>
             <table id="meta">
                 <tr>
                     <td class="meta-head">Invoice #</td>
-                    <td><textarea>000123</textarea></td>
+                    <td><textarea id="invoiceNo">000123</textarea></td>
                 </tr>
                 <tr>
 
@@ -65,7 +66,7 @@ c/o Steve Widget</textarea>
                 </tr>
                 <tr>
                     <td class="meta-head">Amount Due</td>
-                    <td><div class="due">$875.00</div></td>
+                    <td><div class="due">$110.00</div></td>
                 </tr>
 
             </table>
@@ -75,47 +76,56 @@ c/o Steve Widget</textarea>
 		<table id="items">
 		
 		  <tr>
-		      <th>Item</th>
+		     <th>Item</th>
 		      <th>Description</th>
 		      <th>Unit Cost</th>
 		      <th>Quantity</th>
-		      <th>Price</th>
+		      <th>Discount</th>
+			   <th>Price</th>
+			    <th>Tax</th>
 		  </tr>
 		  
 		  <tr class="item-row">
                 <td class="item-name"><div class="delete-wpr"><textarea>Item Name</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td>
 		      <td class="description"><textarea>description</textarea></td>
-		      <td><textarea class="cost">$1.00</textarea></td>
+		      <td><textarea class="cost">$100.00</textarea></td>
 		      <td><textarea class="qty">1</textarea></td>
-		      <td><span class="price">$1.00</span></td>
+              <td><textarea class="discount">0%</textarea></td>
+		      <td><span class="price">$100.00</span></td>
+              <td><textarea class="tax">GST 10%</textarea></td>
 		  </tr>
 		  
 		  		  
 		  <tr id="hiderow">
-		    <td colspan="5"><a id="addrow" href="javascript:;" title="Add a row">Add a row</a></td>
+		    <td colspan="7"><a id="addrow" href="javascript:;" title="Add a row">Add a row</a></td>
 		  </tr>
 		  
 		  <tr>
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line">Subtotal</td>
-		      <td class="total-value"><div id="subtotal">$1.00</div></td>
+		      <td colspan="3" class="blank"> </td>
+		      <td colspan="3" class="total-line">Subtotal</td>
+		      <td class="total-value"><div id="subtotal">$100.00</div></td>
 		  </tr>
 		  <tr>
 
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line">Total</td>
-		      <td class="total-value"><div id="total">$1.00</div></td>
+		      <td colspan="3" class="blank"> </td>
+		      <td colspan="3" class="total-line">Total</td>
+		      <td class="total-value"><div id="total">$100.00</div></td>
 		  </tr>
 		  <tr>
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line">Amount Paid</td>
+		      <td colspan="3" class="blank"> </td>
+		      <td colspan="3" class="total-line">Tax</td>
 
-		      <td class="total-value"><textarea id="paid">$0.00</textarea></td>
+		      <td class="total-value"><div id="paidTax">$10.00</div></td>
+		  </tr>
+          <tr>
+		      <td colspan="3" class="blank"> </td>
+		      <td colspan="3" class="total-line totalAmount">Total Amount:</td>
+		      <td class="total-value balance"><div class="amount">$110.00</div></td>
 		  </tr>
 		  <tr>
-		      <td colspan="2" class="blank"> </td>
-		      <td colspan="2" class="total-line balance">Balance Due</td>
-		      <td class="total-value balance"><div class="due">$1.00</div></td>
+		      <td colspan="3" class="blank"> </td>
+		      <td colspan="3" class="total-line balance">Balance Due</td>
+		      <td class="total-value balance"><div class="due">$110.00</div></td>
 		  </tr>
 		
 		</table>
