@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	
-	<title>Editable Invoice</title>
+	<title>Sumsigns Invoice</title>
 	
 	<link rel='stylesheet' type='text/css' href='css/style.css' />
 	<link rel='stylesheet' type='text/css' href='css/print.css' media="print" />
@@ -26,9 +26,7 @@
 Footscray, 3011, Melbourne, Victoria
 
 Phone: 0426 874 908
-A.B.N 163 382 778
-
-			</textarea>
+A.B.N 163 382 778</textarea>
 
             <div id="logo">
 
@@ -68,7 +66,7 @@ c/o Steve Widget</textarea>
                 </tr>
                 <tr>
                     <td class="meta-head">Amount Due</td>
-                    <td><div class="due">$1000.00</div></td>
+                    <td><div class="due">$110.00</div></td>
                 </tr>
 
             </table>
@@ -78,72 +76,80 @@ c/o Steve Widget</textarea>
 		<table id="items">
 		
 		  <tr>
-		      <th>Item</th>
+		     <th>Item</th>
 		      <th>Description</th>
 		      <th>Unit Cost</th>
 		      <th>Quantity</th>
 		      <th>Discount</th>
 			   <th>Price</th>
-			    <th>Tax</th>
+			    
 		  </tr>
 		  
 		  <tr class="item-row">
                 <td class="item-name"><div class="delete-wpr"><textarea>Item Name</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td>
 		      <td class="description"><textarea>description</textarea></td>
-		      <td><textarea class="cost">$1000.00</textarea></td>
+		      <td><textarea class="cost">$100.00</textarea></td>
 		      <td><textarea class="qty">1</textarea></td>
-			  <td><textarea class="discount">0%</textarea></td>
-		      <td><span class="price">$1000.00</span></td>
-			  <td><textarea class="tax">GST 10%</textarea></td>
+              <td><textarea class="discount">0%</textarea></td>
+		      <td><span class="price">$100.00</span></td>
+              
 		  </tr>
 		  
 		  		  
 		  <tr id="hiderow">
-		    <td colspan="7"><a id="addrow" href="javascript:;" title="Add a row">Add a row</a></td>
+		    <td colspan="6"><a id="addrow" href="javascript:;" title="Add a row">Add a row</a></td>
 		  </tr>
 		  
 		  <tr>
 		      <td colspan="3" class="blank"> </td>
-		      <td colspan="3" class="total-line">Subtotal:</td>
-		      <td class="total-value"><div id="subtotal">$1000.00</div></td>
+		      <td colspan="2" class="total-line">Subtotal</td>
+		      <td class="total-value"><div id="subtotal">$100.00</div></td>
 		  </tr>
 		  <tr>
 
 		      <td colspan="3" class="blank"> </td>
-		      <td colspan="3" class="total-line">Total:</td>
-		      <td class="total-value"><div id="total">$1000.00</div></td>
+		      <td colspan="2" class="total-line">Total</td>
+		      <td class="total-value"><div id="total">$100.00</div></td>
 		  </tr>
 		  <tr>
 		      <td colspan="3" class="blank"> </td>
-		      <td colspan="3" class="total-line">Tax:</td>
+		      <td colspan="2" class="total-line">
+              <select id="taxType">
+                <option selected value="GST">GST 10%</option>
+                <option value="SEL1">Selection 1</option>
+                <option value="SEL2">Selection 2</option>
+              </select>
+            </td>
 
-		      <td class="total-value"><textarea id="paidTax">$100.00</textarea></td>
+		      <td class="total-value"><div id="paidTax">$10.00</div></td>
+		  </tr>
+          <tr>
+		      <td colspan="3" class="blank"> </td>
+		      <td colspan="2" class="total-line totalAmount">Total Amount:</td>
+		      <td class="total-value totalAmount"><div class="amount">$110.00</div></td>
 		  </tr>
 		  <tr>
 		      <td colspan="3" class="blank"> </td>
-		      <td colspan="3" class="total-line totalAmount">Total Amount:</td>
-		      <td class="total-value balance"><div class="amount">$1100.00</div></td>
+		      <td colspan="2" class="total-line balance">Balance Due</td>
+		      <td class="total-value balance"><div class="due">$110.00</div></td>
 		  </tr>
-		 <tr>
-		      <td colspan="3" class="blank"> </td>
-		      <td colspan="3" class="total-line balance">Balance Due:</td>
-		      <td class="total-value balance"><div class="due">$1100.00</div></td>
-		  </tr>
+		
 		</table>
 		
-		<br/>
-		<div id="account">
-		  <h5>Account SumSigns</h5>
-
-            <textarea id="account">
-Name: Sumsings
-BSB: 063 132
-ACC: 1105 2684
-			</textarea>
-		</div>
-	<br/>
+		<!--<div id="terms">
+		  <h5>Terms</h5>
+		  <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
+		</div>-->
+	
 		<div id="functions">
-		    <input type="button" name="send" id="sendmail" value="Send Email"  />
+		    <p>
+             Cusomer email: 
+             <input type="email" id="customer_email" required="required"  />   
+		     <input type="button" name="send" id="sendmail" value="Send Email" />
+             
+	      </p>
+          <p>&nbsp;</p>
+          <hr/><br/>
 		  </div>
 	</div>
 	
