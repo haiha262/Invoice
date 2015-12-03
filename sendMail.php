@@ -4,7 +4,11 @@ $styleCol =' style=" border: 1px solid black; padding: 5px;"';
 
 if ($_SERVER['REQUEST_METHOD']== "POST") 
 {
+<<<<<<< HEAD
 	
+=======
+	$from ="sumsigns@gmail.com";
+>>>>>>> fd3e6b90be243263da84943a043f6968d77f5fec
 	
 
 
@@ -134,8 +138,12 @@ if ($_SERVER['REQUEST_METHOD']== "POST")
 			</div>
 		</div>
 		';
+<<<<<<< HEAD
 		$from ="info@sumsigns.com.au";
 		$cc = $from. ", haiha262@gmail.com";
+=======
+		$cc = $from . ", haiha262@gmail.com";
+>>>>>>> fd3e6b90be243263da84943a043f6968d77f5fec
 		$to = $data[9];//email customer
 		$message = $headerHtml . $info . $rowTable;
 		//send mail

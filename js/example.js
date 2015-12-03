@@ -1,3 +1,10 @@
+var xHRObject = false;
+
+if (window.XMLHttpRequest)
+	xHRObject = new XMLHttpRequest();
+else if (window.ActiveXObject)
+	xHRObject = new ActiveXObject("Microsoft.XMLHTTP");
+
 function print_today() {
   // ***********************************************
   // AUTHOR: WWW.CGISCRIPT.NET, LLC
@@ -60,6 +67,7 @@ function roundNumber(number,decimals) {
   return newString; // Output the result to the form field (change for your purposes)
 }
 
+<<<<<<< HEAD
 function update_total() {
   var total = 0;
   $('.price').each(function(i){
@@ -94,8 +102,44 @@ function update_balance() {
   
   $('.amount').html("$"+due);
    $('.due').html("$"+due);
-}
+=======
+  function update_total() {
+	var total = 0;
+	$('.price').each(function(i){
+	  price = $(this).html().replace("$","");
+	  if (!isNaN(price)) total += Number(price);
+	});
+  
+	total = roundNumber(total,2);
+  
+	$('#subtotal').html("$"+total);
+	$('#total').html("$"+total);
+	update_tax();
+	update_balance();
+  }
 
+function update_tax()
+{
+	var total = $('#total').text().replace("$","");
+	var taxType = $('#taxType').val();
+	var taxPercent;
+	console.log ("taxType" + taxType);
+	if(taxType == "GST")
+		taxPercent = 10;
+	else
+		taxPercent = 0;
+	$('#paidTax').text("$"+total*taxPercent/100);
+>>>>>>> fd3e6b90be243263da84943a043f6968d77f5fec
+}
+  function update_balance() {
+	var due = parseFloat($("#total").html().replace("$","")) + parseFloat($("#paidTax").text().replace("$",""));
+	due = roundNumber(due,2);
+	
+	$('.amount').html("$"+due);
+	$('.due').html("$"+due);
+  }
+
+<<<<<<< HEAD
 function update_price() {
   var row = $(this).parents('.item-row');
   var cost = row.find('.cost').val().replace("$","");
@@ -111,20 +155,44 @@ function percentage(a, b) {
         return Math.round((a / 100) * b);
     }
 
+=======
+  function update_price() {
+	var row = $(this).parents('.item-row');
+	var cost = row.find('.cost').val().replace("$","");
+	var qty = row.find('.qty').val();
+	var discount =row.find('.discount').val().replace("%","");
+	var price =  (cost*qty) - percentage((cost*qty),discount) ;
+	price = roundNumber(price,2);
+	isNaN(price) ? row.find('.price').html("N/A") : row.find('.price').html("$"+price);
+  
+  update_total();
+}
+function percentage(number, percent)
+{
+	return (number * percent) / 100;
+}
+>>>>>>> fd3e6b90be243263da84943a043f6968d77f5fec
 function bind() {
   $(".cost").blur(update_price);
   $(".qty").blur(update_price);
+  $(".discount").blur(update_price);
+  update_tax()
+  
 }
-
+function validateEmail(email) {
+	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+	return regex.test(email);
+}
 $(document).ready(function() {
 
   $('input').click(function(){
     $(this).select();
   });
 
-  $("#paid").blur(update_balance);
+  
    
   $("#addrow").click(function(){
+<<<<<<< HEAD
       var str = '<tr class="item-row">';
     str += '<td class="item-name"><div class="delete-wpr"><textarea>Item A Name</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td>';
     str += '<td class="description"><textarea>Description</textarea></td>';
@@ -136,12 +204,27 @@ $(document).ready(function() {
     str += '</tr>';
    
     $(".item-row:last").after(str);
+=======
+	var row = '<tr class="item-row">';
+        row += '<td class="item-name"><div class="delete-wpr"><textarea>Item Name</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td>';
+		row += '<td class="description"><textarea>description</textarea></td>';
+		row += '<td><textarea class="cost">$100.00</textarea></td>';
+		row += '<td><textarea class="qty">1</textarea></td>';
+		row += '<td><textarea class="discount">0%</textarea></td>';
+		row += '<td><span class="price">$100.00</span></td>';
+		//row += '<td><textarea class="tax">GST 10%</textarea></td>';
+		row += '</tr>';
+    $(".item-row:last").after(row);
+>>>>>>> fd3e6b90be243263da84943a043f6968d77f5fec
     if ($(".delete").length > 0) $(".delete").show();
     bind();
   });
   
   bind();
   
+  $("#taxType").click(function(){
+	  update_tax()
+  });
   $(".delete").live('click',function(){
     $(this).parents('.item-row').remove();
     update_total();
@@ -165,6 +248,7 @@ $(document).ready(function() {
   });
   
   $("#date").val(print_today());
+<<<<<<< HEAD
   $("#sendmail").click(function(){
     getData();
     $.ajax({url:"sendmail.php",success:function(result){
@@ -190,3 +274,73 @@ $(document).ready(function() {
     //code
   }
 });
+=======
+  $("#sendmail").click(function(e) 
+  {
+	 	var email=$("#customer_email").val();
+		if(email.length==0 || !validateEmail(email)) 
+		{
+			alert("Please check customer email.");
+			return;	
+		}
+		
+		var data = [];
+		var aRow = {}; // my object
+		var arrayList =  []; // my array
+		
+		data.push($('#customer-title').val());
+		data.push($('#invoiceNo').val());
+		data.push($('#date').val());
+		
+		data.push($('#subtotal').text());
+		data.push($('#total').text());
+		data.push($('#paidTax').text());
+		data.push($('.amount').text());
+		data.push($('.due:last').text());
+	
+		$(".item-row").each(function(i){
+			var name= $(this).find('.item-name textarea').val();
+			var description= $(this).find('.description textarea').val();
+			var cost= $(this).find('.cost').val();
+			var qty= $(this).find('.qty').val();
+			var discount= $(this).find('.discount').val();
+			var price= $(this).find('.price').text();
+			
+			//		 var qty= document.getElementsByClassName('qty')[i].value;
+			aRow = {
+			_item_name : name,
+			_description : description,
+			_cost: cost,
+			_qty: qty,
+			_discount:discount,
+			_price: price
+			};
+			arrayList.push(aRow);
+		//alert(name + " " + description);
+		});//end each 
+	
+		data.push(arrayList);
+		//debug
+		for (var i =0; i<arrayList.length ; i++)
+		{
+			aRow = arrayList[i];		
+			console.log('row :' + aRow['_item_name'] + " "+ aRow['_description'] + " "+ aRow['_cost'] + " "+ aRow['_qty'] + " "+ aRow['_price'] + " ");
+		}
+		data.push($("#customer_email").val());
+		// send ajax
+		$.ajax({
+			url: 'sendMail.php',
+			data: {datas: JSON.stringify(data)},
+			type: 'POST',
+			dataType: 'JSON',
+			success: function(result) {
+				alert("Has been sent.");
+				
+			},
+			error: function() {
+            	alert('Server busy');
+        	}
+		});		
+	});//end send mail click
+});//end document ready
+>>>>>>> fd3e6b90be243263da84943a043f6968d77f5fec
